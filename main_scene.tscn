@@ -1,0 +1,305 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://spinner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites.png" type="Texture" id=2]
+[ext_resource path="res://StartLake_Tileset_01.png" type="Texture" id=3]
+[ext_resource path="res://player.gd" type="Script" id=4]
+[ext_resource path="res://fish.tscn" type="PackedScene" id=5]
+[ext_resource path="res://noise.jpg" type="Texture" id=6]
+
+[sub_resource type="VisualShaderNodeColorOp" id=1]
+operator = 6
+
+[sub_resource type="VisualShaderNodeTexture" id=2]
+output_port_for_preview = 0
+source = 2
+texture = ExtResource( 6 )
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id=3]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeInput" id=4]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVectorOp" id=5]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=6]
+default_input_values = [ 0, 0.0, 1, 0.2 ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeColorConstant" id=7]
+constant = Color( 0.128239, 0.528819, 0.667969, 1 )
+
+[sub_resource type="VisualShader" id=8]
+code = "shader_type canvas_item;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:3
+	vec3 n_out3p0 = vec3(UV, 0.0);
+
+// Input:4
+	float n_out4p0 = TIME;
+
+// ScalarOp:6
+	float n_in6p1 = 0.20000;
+	float n_out6p0 = n_out4p0 * n_in6p1;
+
+// VectorOp:5
+	vec3 n_out5p0 = n_out3p0 + vec3(n_out6p0);
+
+// Texture:2
+	vec3 n_out2p0;
+	float n_out2p1;
+	{
+		vec4 _tex_read = texture(TEXTURE, n_out5p0.xy);
+		n_out2p0 = _tex_read.rgb;
+		n_out2p1 = _tex_read.a;
+	}
+
+// Color:8
+	vec3 n_out8p0 = vec3(0.128239, 0.528819, 0.667969);
+	float n_out8p1 = 1.000000;
+
+// ColorOp:10
+	vec3 n_out10p0 = vec3(1.0) - (vec3(1.0) - n_out2p0) / (n_out8p0);
+
+// Output:0
+	COLOR.rgb = n_out10p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -1141, 59.5 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 1400, 160 )
+nodes/fragment/2/node = SubResource( 2 )
+nodes/fragment/2/position = Vector2( -120, 240 )
+nodes/fragment/3/node = SubResource( 3 )
+nodes/fragment/3/position = Vector2( -1420, 140 )
+nodes/fragment/4/node = SubResource( 4 )
+nodes/fragment/4/position = Vector2( -1460, 580 )
+nodes/fragment/5/node = SubResource( 5 )
+nodes/fragment/5/position = Vector2( -580, 340 )
+nodes/fragment/6/node = SubResource( 6 )
+nodes/fragment/6/position = Vector2( -980, 440 )
+nodes/fragment/8/node = SubResource( 7 )
+nodes/fragment/8/position = Vector2( 300, 440 )
+nodes/fragment/10/node = SubResource( 1 )
+nodes/fragment/10/position = Vector2( 700, 240 )
+nodes/fragment/connections = PoolIntArray( 4, 0, 6, 0, 6, 0, 5, 1, 5, 0, 2, 0, 10, 0, 0, 0, 8, 0, 10, 1, 2, 0, 10, 0, 3, 0, 5, 0 )
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( 0, 0, 20, 0, 20, 20, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 0, 0, 20, 0, 20, 20, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+points = PoolVector2Array( 0, 0, 20, 0, 20, 20, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+points = PoolVector2Array( 0, 20, 20, 20, 20, 20, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+points = PoolVector2Array( 0, 0, 20, 0, 20, 20, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=15]
+points = PoolVector2Array( 0, 0, 20, 0, 20, 20, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+points = PoolVector2Array( 0, 0, 20, 0, 20, 20, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+points = PoolVector2Array( 0, 0, 20, 0, 20, 20, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=18]
+points = PoolVector2Array( 0, 0, 20, 0, 20, 20, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=19]
+points = PoolVector2Array( 0, 0, 20, 0, 20, 20, 0, 20 )
+
+[sub_resource type="ConvexPolygonShape2D" id=20]
+points = PoolVector2Array( 0, 0, 20, 0, 20, 20, 0, 20 )
+
+[sub_resource type="TileSet" id=21]
+0/name = "StartLake_Tileset_01.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 120, 60 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 20, 20 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 10 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 10 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 11 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 12 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 13 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 14 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 15 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 16 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 17 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 5, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 18 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 19 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 20 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[sub_resource type="CircleShape2D" id=22]
+radius = 8.0
+
+[node name="GameRoot" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+material = SubResource( 9 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 20000, 20000 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 21 )
+cell_size = Vector2( 20, 20 )
+format = 1
+tile_data = PoolIntArray( -524304, 0, 65537, -524303, 0, 65537, -524302, 0, 65537, -524301, 0, 65537, -524300, 0, 65537, -524299, 0, 65537, -524298, 0, 65537, -524297, 0, 65537, -524296, 0, 65537, -524295, 0, 65537, -524294, 0, 65537, -524293, 0, 65537, -524292, 0, 65537, -524291, 0, 65537, -524290, 0, 65537, -524289, 0, 65537, -589824, 0, 65537, -589823, 0, 65537, -589822, 0, 65537, -589821, 0, 65537, -589820, 0, 65537, -589819, 0, 65537, -589818, 0, 65537, -589817, 0, 65537, -589816, 0, 65537, -589815, 0, 65537, -589814, 0, 65537, -589813, 0, 65537, -589812, 0, 65537, -589811, 0, 65537, -589810, 0, 65537, -589809, 0, 65537, -458768, 0, 65537, -524273, 0, 65537, -393232, 0, 65537, -458737, 0, 65537, -327696, 0, 65537, -393201, 0, 65537, -262160, 0, 65537, -262153, 0, 65537, -327670, 0, 65537, -327665, 0, 65537, -196624, 0, 65537, -196617, 0, 65537, -262134, 0, 65537, -262129, 0, 65537, -131088, 0, 65537, -131081, 0, 65537, -196598, 0, 65537, -196593, 0, 65537, -65552, 0, 65537, -65545, 0, 65537, -131062, 0, 65537, -131057, 0, 65537, -16, 0, 65537, -9, 0, 65537, -65526, 0, 65537, -65521, 0, 65537, 65520, 0, 65537, 65527, 0, 65537, 10, 0, 65537, 15, 0, 65537, 131056, 0, 65537, 131063, 0, 65537, 65546, 0, 65537, 65551, 0, 65537, 196592, 0, 65537, 196599, 0, 65537, 131082, 0, 65537, 131087, 0, 65537, 262128, 0, 65537, 262135, 0, 65537, 196618, 0, 65537, 196623, 0, 65537, 327664, 0, 65537, 262159, 0, 65537, 393200, 0, 65537, 327695, 0, 65537, 458736, 0, 65537, 393231, 0, 65537, 524272, 0, 65537, 458767, 0, 65537, 589808, 0, 65537, 589809, 0, 65537, 589810, 0, 65537, 589811, 0, 65537, 589812, 0, 65537, 589813, 0, 65537, 589814, 0, 65537, 589815, 0, 65537, 589816, 0, 65537, 589817, 0, 65537, 589818, 0, 65537, 589819, 0, 65537, 589820, 0, 65537, 589821, 0, 65537, 589822, 0, 65537, 589823, 0, 65537, 524288, 0, 65537, 524289, 0, 65537, 524290, 0, 65537, 524291, 0, 65537, 524292, 0, 65537, 524293, 0, 65537, 524294, 0, 65537, 524295, 0, 65537, 524296, 0, 65537, 524297, 0, 65537, 524298, 0, 65537, 524299, 0, 65537, 524300, 0, 65537, 524301, 0, 65537, 524302, 0, 65537, 524303, 0, 65537 )
+
+[node name="Player" type="RigidBody2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+texture = ExtResource( 2 )
+hframes = 10
+vframes = 10
+
+[node name="Shape" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 22 )
+
+[node name="Camera" type="Camera2D" parent="Player"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="Spinner" parent="." instance=ExtResource( 1 )]
+position = Vector2( 32, 16 )
+
+[node name="Spinner2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -66.375, 104 )
+
+[node name="Spinner3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 128, -88 )
+
+[node name="Spinner6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 248, -128 )
+
+[node name="Spinner7" parent="." instance=ExtResource( 1 )]
+position = Vector2( -248, -128 )
+
+[node name="Spinner8" parent="." instance=ExtResource( 1 )]
+position = Vector2( -240, 120 )
+
+[node name="Spinner4" parent="." instance=ExtResource( 1 )]
+position = Vector2( -80, -104 )
+
+[node name="Spinner5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 140, 88 )
+
+[node name="Spinner9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 248, 132 )
+
+[node name="Fish" parent="." instance=ExtResource( 5 )]
+
+[node name="Fish2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 104, -40 )
+
+[node name="Fish3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 80, 72 )
+
+[node name="Fish4" parent="." instance=ExtResource( 5 )]
+position = Vector2( -72, 40 )
+
+[node name="Fish5" parent="." instance=ExtResource( 5 )]
+position = Vector2( -240, -16 )
+
+[node name="Fish6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 256, -16 )
